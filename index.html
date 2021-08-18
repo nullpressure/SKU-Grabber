@@ -60,7 +60,7 @@
   <p>A Chrome-specific bookmarklet for quick SKU lookup functionality on GameStop.com</p>
 
   <h4>
-<a class="bookmarklet" href="javascript:(function()%7B(function()%20%7B%20%20%20%20const%20productDetail%20%3D%20document.querySelector(%22.product-detail%22)%3B%20%20%20%20document.querySelector(%22.product-name%22).insertAdjacentHTML(%22beforebegin%22%2C%20%60%3Ch2%20class%3D%22product-name%20h2%22%20style%3D%22color%3Ared%22%3ESKU%3A%20%3C%2Fh2%3E%3Ch2%20class%3D%22product-name%20h2%22%3E%24%7BproductDetail.dataset.pid%7D%3C%2Fh2%3E%3Cbr%3E%3Cbr%3E%60)%3B%7D)()%7D)()">SKU Grabber</a>
+<a class="bookmarklet" href="javascript:(function()%7B!function()%7Bconst e%3Ddocument.querySelector(".product-detail")%3Bnull!%3Ddocument.getElementById("skuvar1")%26%26(document.getElementById("skuvar1").outerHTML%3D""%2Cdocument.getElementById("skuvar2").outerHTML%3D"")%2Cdocument.querySelector(".product-name").insertAdjacentHTML("beforebegin"%2C%60<h2 class%3D"product-name h2" id%3D"skuvar1" style%3D"color%3Ared">SKU%3A <%2Fh2><h2 class%3D"product-name h2" id%3D"skuvar2">%24%7Be.dataset.pid%7D<br%2F><%2Fh2>%60)%7D()%7D)()">SKU Grabber</a>
     <span>← Drag this to your bookmarks bar.</span>
   </h4>
 	
