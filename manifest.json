@@ -1,0 +1,16 @@
+{
+  "name": "SKU Grabber",
+  "action": {},
+  "manifest_version": 3,
+  "version": "2.0",
+  "description": "SKU Injector for GS Product Pages",
+  "permissions": [
+    "activeTab"
+  ],
+ "content_scripts": [
+   {
+     "matches": ["https://*.gamestop.com/*"],
+     "js": ["510087.js"]
+   }
+ ],
+}
