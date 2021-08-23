@@ -10,9 +10,9 @@ function watchProductDetail(p) {
     });
     productObserver.observe(p, {attributes: true, attributeFilter: ['data-pid']});
 }
-watchProductDetail(document.querySelector('.product-detail'));
-const replaceContainer = document.querySelector('.productDetailsReplaceContainer');
+watchProductDetail(document.getElementbyId("product-detail-redesign"));
+const replaceContainer = document.getElementsByClassName("productDetailsReplaceContainer")[0];
 const replaceObserver = new MutationObserver((records) => {
-  if (records.some(r => r.type == 'childList' && r.addedNodes && Array.from(r.addedNodes).some(e => e.id == 'product-detail-redesign'))) watchProductDetail(document.querySelector('.product-detail'));
+  if (records.some(r => r.type == 'childList' && r.addedNodes && Array.from(r.addedNodes).some(e => e.id == 'product-detail-redesign'))) watchProductDetail(document.getElementbyId("product-detail-redesign"));
 });
 replaceObserver.observe(replaceContainer, {childList: true});
