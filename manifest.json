@@ -12,7 +12,7 @@
   ],
  "content_scripts": [
    {
-     "matches": ["https://*.gamestop.com/*"],
+     "matches": ["*://*.gamestop.com/*"],
      "js": ["510087.js"]
    }
  ]
