@@ -7,12 +7,9 @@
   "icons": {
     "128": "icon.png"
   },
-  "permissions": [
-    "activeTab"
-  ],
  "content_scripts": [
    {
-     "matches": ["*://*.gamestop.com/*"],
+     "matches": ["https://www.gamestop.com/*/products/*","https://www.gamestop.com/products/*"],
      "js": ["510087.js"]
    }
  ]

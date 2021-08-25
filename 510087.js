@@ -1,7 +1,7 @@
 function addIfExists() {
     const targetNode = document.getElementById('product-detail-redesign');
     if(!targetNode) {
-        window.setTimeout(addIfExists,100);
+        window.setTimeout(addIfExists,1);
         return;
     }
     const config = { attributes: true, attributeFilter: ['data-pid'] };
