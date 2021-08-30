@@ -9,10 +9,9 @@ function addIfExists() {
     function callback(mutationList) {
         mutationList.forEach( (mutation) => {
             if (targetNode.getAttribute('data-pid').match(regex)){
-                var skuInserted = document.getElementById("sku-var");
-                if (skuInserted != null) {
-                    document.getElementById("sku-var").outerHTML = "";                
-                }
+                try { 
+                    document.getElementById("sku-var").outerHTML = "";
+                } catch {};
                 document.querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${targetNode.getAttribute('data-pid')}<br/></h2></div>`);
             }
         });
