@@ -1,8 +1,12 @@
-function main() {
+function addIfExists() {
     const targetNode = document.getElementById('product-detail-redesign');
-    const config = { attributes: true, attributeFilter: ['data-pid'], childList: true };
-    function skuInjector(mutationList) {
-        const regex = /^[a-zA-z]\d\d\d\d\d\d[a-zA-z]$|^\d\d\d\d\d\d$/;
+    if(!targetNode) {
+        window.setTimeout(addIfExists,1);
+        return;
+    }
+    const config = { attributes: true, attributeFilter: ['data-pid'] };
+    const regex = /^[a-zA-z]\d\d\d\d\d\d[a-zA-z]$|^\d\d\d\d\d\d$/;
+    function callback(mutationList) {
         mutationList.forEach( (mutation) => {
             if (targetNode.getAttribute('data-pid').match(regex)){
                 try { 
@@ -12,18 +16,12 @@ function main() {
             }
         });
     }
-    const skuObserver = new MutationObserver(skuInjector);
-    skuObserver.observe(targetNode, config);
+    const observer = new MutationObserver(callback);
+    observer.observe(targetNode, config);
 }
-
-const bodyObserver = new MutationObserver((records) => {
-    if (records.some(r => r.type == 'childList' && r.addedNodes && Array.from(r.addedNodes).some(e => e.id == 'product-detail-redesign'))) main();
+addIfExists();
+const replaceContainer = document.querySelector('.productDetailsReplaceContainer');
+const replaceObserver = new MutationObserver((records) => {
+    if (records.some(r => r.type == 'childList' && r.addedNodes && Array.from(r.addedNodes).some(e => e.id == 'product-detail-redesign'))) addIfExists();
 });
-bodyObserver.observe(document.body, {childList: true});
-
-chrome.action.onClicked.addListener((tab) => {
-    chrome.scripting.executeScript({
-      target: {tabId: tab.id},
-      func: main,
-    });
-  });
+replaceObserver.observe(replaceContainer, {childList: true});
