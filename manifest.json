@@ -2,11 +2,12 @@
   "name": "SKU Grabber",
   "action": {},
   "manifest_version": 3,
-  "version": "2.1",
+  "version": "2.2",
   "description": "GS Product Page SKU Injector",
   "icons": {
     "128": "icon.png"
   },
+  "permissions": ["activeTab", "scripting"],
   "background": {
     "service_worker": "background.js"
   },
