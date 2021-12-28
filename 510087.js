@@ -4,7 +4,7 @@ function addIfExists() {
         window.setTimeout(addIfExists,100);
         return;
     }
-    const config = { attributes: true, attributeFilter: ['data-pid'] };
+    const config = { attributes: true, attributeFilter: ['data-condition-selected-variant-id'] };
     const regex = /^\d\d\d\d\d\d$/;
     const bundleRegex = /^[a-zA-z]\d\d\d\d\d\d[a-zA-z]$/;
     function callback(mutationList) {
@@ -15,7 +15,7 @@ function addIfExists() {
                 } catch {};
                 document.querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${targetNode.getAttribute('data-pid')}<br/></h2></div>`);
                 return;
-            }else if (targetNode.getAttribute('data-pid').match(bundleRegex)){
+            }else if (targetNode.getAttribute('data-condition-selected-variant-id').match(bundleRegex)){
                 try { 
                     document.getElementById("sku-var").outerHTML = "";
                 } catch {};
