@@ -1,5 +1,5 @@
 function addIfExists() {
-    const targetNode = document.getElementById('product-detail-redesign');
+    const targetNode = document.querySelector("selected=\"selected\"");
     if(!targetNode) {
         window.setTimeout(addIfExists,100);
         return;
@@ -9,7 +9,7 @@ function addIfExists() {
     const bundleRegex = /^[a-zA-z]\d\d\d\d\d\d[a-zA-z]$/;
     function callback(mutationList) {
         mutationList.forEach( (mutation) => {
-            if (targetNode.getAttribute('data-pid').match(regex)){
+            if (targetNode.getAttribute('data-condition-selected-variant-id').match(regex)){
                 try { 
                     document.getElementById("sku-var").outerHTML = "";
                 } catch {};

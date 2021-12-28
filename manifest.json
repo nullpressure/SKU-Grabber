@@ -2,7 +2,7 @@
   "name": "SKU Grabber",
   "action": {},
   "manifest_version": 3,
-  "version": "2.2",
+  "version": "2.3",
   "description": "GS Product Page SKU Injector",
   "icons": {
     "128": "icon.png"
