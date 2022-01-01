@@ -13,13 +13,13 @@ function addIfExists() {
                 try { 
                     document.getElementById("sku-var").outerHTML = "";
                 } catch {};
-                document.querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${targetNode.getAttribute('data-pid')}<br/></h2></div>`);
+                document.querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${targetNode.getAttribute('data-condition-selected-variant-id')}<br/></h2></div>`);
                 return;
             }else if (targetNode.getAttribute('data-condition-selected-variant-id').match(bundleRegex)){
                 try { 
                     document.getElementById("sku-var").outerHTML = "";
                 } catch {};
-                document.querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${targetNode.getAttribute('data-pid')}<br/></h2></div>`);
+                document.querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${targetNode.getAttribute('data-condition-selected-variant-id')}<br/></h2></div>`);
                 return;
             }
         });
