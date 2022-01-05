@@ -2,15 +2,12 @@
   "name": "SKU Grabber",
   "action": {},
   "manifest_version": 3,
-  "version": "2.4",
+  "version": "2.5",
   "description": "GS Product Page SKU Injector",
   "icons": {
     "128": "icon.png"
   },
   "permissions": ["activeTab", "scripting"],
-  "background": {
-    "service_worker": "background.js"
-  },
   "content_scripts": [
    {
      "matches": ["https://www.gamestop.com/*"],

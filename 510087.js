@@ -1,5 +1,6 @@
 function addIfExists() {
-    const targetNode = document.querySelector("selected=\"selected\"");
+    const targetNode = document.querySelectorAll('[selected="selected"]');
+
     if(!targetNode) {
         window.setTimeout(addIfExists,100);
         return;
@@ -28,8 +29,8 @@ function addIfExists() {
     observer.observe(targetNode, config);
 }
 addIfExists();
-const replaceContainer = document.querySelector('.productDetailsReplaceContainer');
+const replaceContainer = document.querySelector('.primary-details-row');
 const replaceObserver = new MutationObserver((records) => {
-    if (records.some(r => r.type == 'childList' && r.addedNodes && Array.from(r.addedNodes).some(e => e.id == 'product-detail-redesign'))) addIfExists();
+    if (records.some(r => r.type == 'childList' && r.addedNodes && Array.from(r.addedNodes).some(e => e.id == '.primary-details-row'))) addIfExists();
 });
 replaceObserver.observe(replaceContainer, {childList: true});
