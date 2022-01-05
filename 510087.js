@@ -1,5 +1,5 @@
 function addIfExists() {
-    const targetNode = document.querySelectorAll('[selected="selected"]');
+    const targetNode = document.querySelector('[selected="selected"]');
 
     if(!targetNode) {
         window.setTimeout(addIfExists,100);
