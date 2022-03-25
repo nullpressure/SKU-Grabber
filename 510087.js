@@ -29,3 +29,8 @@ function addIfExists() {
     observer.observe(targetNode, config);
 }
 addIfExists();
+const replaceContainer = document.querySelector('.productDetailsReplaceContainer');
+const replaceObserver = new MutationObserver((records) => {
+    if (records.some(r => r.type == 'childList' && r.addedNodes && Array.from(r.addedNodes).some(e => e.id == 'product-detail-redesign'))) addIfExists();
+});
+replaceObserver.observe(replaceContainer, {childList: true});
