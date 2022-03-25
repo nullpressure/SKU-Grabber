@@ -1,10 +1,10 @@
 function addIfExists() {
-    const targetNode = document.querySelector('.apple-pay-pdp');
+    const targetNode = document.querySelector('.btn-check-availability');
     if(!targetNode) {
         window.setTimeout(addIfExists,100);
         return;
     }
-    const config = { attributes: true, attributeFilter: ['sku'] };
+    const config = { attributes: true, attributeFilter: ['data-pid'] };
     const regex = /^\d\d\d\d\d\d$/;
     const bundleRegex = /^[a-zA-z]\d\d\d\d\d\d[a-zA-z]$/;
     function callback(mutationList) {
@@ -13,13 +13,13 @@ function addIfExists() {
                 try { 
                     document.getElementById("sku-var").outerHTML = "";
                 } catch {};
-                document.querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${targetNode.getAttribute('sku')}<br/></h2></div>`);
+                document.querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${targetNode.getAttribute('data-pid')}<br/></h2></div>`);
                 return;
             }else if (targetNode.getAttribute('sku').match(bundleRegex)){
                 try { 
                     document.getElementById("sku-var").outerHTML = "";
                 } catch {};
-                document.querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${targetNode.getAttribute('sku')}<br/></h2></div>`);
+                document.querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${targetNode.getAttribute('data-pid')}<br/></h2></div>`);
                 return;
             }
         });
