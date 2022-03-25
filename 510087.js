@@ -29,8 +29,17 @@ function addIfExists() {
     observer.observe(targetNode, config);
 }
 addIfExists();
-const replaceContainer = document.querySelector('.productDetailsReplaceContainer');
-const replaceObserver = new MutationObserver((records) => {
-    if (records.some(r => r.type == 'childList' && r.addedNodes && Array.from(r.addedNodes).some(e => e.id == 'product-detail-redesign'))) addIfExists();
-});
-replaceObserver.observe(replaceContainer, {childList: true});
+function addIfExists2() {
+    const targetNode = document.querySelector('.productDetailsReplaceContainer');
+
+    if(!targetNode) {
+        window.setTimeout(addIfExists2,100);
+        return;
+    }
+    const replaceContainer = document.querySelector('.productDetailsReplaceContainer');
+    const replaceObserver = new MutationObserver((records) => {
+        if (records.some(r => r.type == 'childList' && r.addedNodes && Array.from(r.addedNodes).some(e => e.id == 'product-detail-redesign'))) addIfExists();
+    });
+    replaceObserver.observe(replaceContainer, {childList: true});
+}
+addIfExists2();
