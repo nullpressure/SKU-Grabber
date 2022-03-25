@@ -9,13 +9,13 @@ function addIfExists() {
     const bundleRegex = /^[a-zA-z]\d\d\d\d\d\d[a-zA-z]$/;
     function callback(mutationList) {
         mutationList.forEach( (mutation) => {
-            if (targetNode.getAttribute('data-pid').match(regex)){
+            if (targetNode.getAttribute('sku').match(regex)){
                 try { 
                     document.getElementById("sku-var").outerHTML = "";
                 } catch {};
                 document.querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${targetNode.getAttribute('sku')}<br/></h2></div>`);
                 return;
-            }else if (targetNode.getAttribute('data-pid').match(bundleRegex)){
+            }else if (targetNode.getAttribute('sku').match(bundleRegex)){
                 try { 
                     document.getElementById("sku-var").outerHTML = "";
                 } catch {};
