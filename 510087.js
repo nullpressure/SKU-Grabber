@@ -1,26 +1,26 @@
 function addIfExists() {
-    const targetNode = document.querySelector('[selected="selected"]');
+    const targetNode = document.querySelector('data-selected-variant-pid');
 
     if(!targetNode) {
         window.setTimeout(addIfExists,100);
         return;
     }
-    const config = { attributes: true, attributeFilter: ['data-condition-selected-variant-id'] };
+    const config = { attributes: true, attributeFilter: ['data-selected-variant-pid'] };
     const regex = /^\d\d\d\d\d\d$/;
     const bundleRegex = /^[a-zA-z]\d\d\d\d\d\d[a-zA-z]$/;
     function callback(mutationList) {
         mutationList.forEach( (mutation) => {
-            if (targetNode.getAttribute('data-condition-selected-variant-id').match(regex)){
+            if (targetNode.getAttribute('data-pid').match(regex)){
                 try { 
                     document.getElementById("sku-var").outerHTML = "";
                 } catch {};
-                document.querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${targetNode.getAttribute('data-condition-selected-variant-id')}<br/></h2></div>`);
+                document.querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${targetNode.getAttribute('data-pid')}<br/></h2></div>`);
                 return;
-            }else if (targetNode.getAttribute('data-condition-selected-variant-id').match(bundleRegex)){
+            }else if (targetNode.getAttribute('data-pid').match(bundleRegex)){
                 try { 
                     document.getElementById("sku-var").outerHTML = "";
                 } catch {};
-                document.querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${targetNode.getAttribute('data-condition-selected-variant-id')}<br/></h2></div>`);
+                document.querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${targetNode.getAttribute('data-pid')}<br/></h2></div>`);
                 return;
             }
         });
@@ -29,8 +29,8 @@ function addIfExists() {
     observer.observe(targetNode, config);
 }
 addIfExists();
-const replaceContainer = document.querySelector('.primary-details-row');
+const replaceContainer = document.querySelector('[class=productDetailsReplaceContainer]');
 const replaceObserver = new MutationObserver((records) => {
-    if (records.some(r => r.type == 'childList' && r.addedNodes && Array.from(r.addedNodes).some(e => e.id == '.primary-details-row'))) addIfExists();
+    if (records.some(r => r.type == 'childList' && r.addedNodes && Array.from(r.addedNodes).some(e => e.id == '[class=productDetailsReplaceContainer]'))) addIfExists();
 });
 replaceObserver.observe(replaceContainer, {childList: true});
