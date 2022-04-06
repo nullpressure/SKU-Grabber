@@ -5,12 +5,14 @@ function addIfExists() {
 
     const targetNode = document.querySelector("div[Selected='Selected']");
     const targetAttr = document.getElementById("product-detail-redesign").dataset.pid;
-    const applePaySKU = console.log(document.querySelector("isapplepay").getAttribute('sku'))
+    const applePaySKU = console.log(document.querySelector("isapplepay").getAttribute('sku'));
     if(!targetNode&&!targetAttr&&!applePaySKU) {
         setTimeout(addIfExists,100);
         return;
     }
+    
     const targetSKU = targetNode.dataset.conditionSelectedVariantId;
+    
 
     console.log("targetSKU: ",targetSKU);
     console.log("targetAttr: ",targetAttr);
