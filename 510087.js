@@ -5,6 +5,7 @@ function addIfExists() {
         return;
     }
     const targetSku = targetNode.dataset.conditionSelectedVariantId;
+    console.log(targetSku);
     const config = { attributes: true, attributeFilter: ['data-condition-selected-variant-id'] };
     const regex = /^\d\d\d\d\d\d$/;
     const bundleRegex = /^[a-zA-z]\d\d\d\d\d\d[a-zA-z]$/;
