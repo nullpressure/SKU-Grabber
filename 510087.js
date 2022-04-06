@@ -6,28 +6,28 @@ function addIfExists() {
     }
     const targetSku = targetNode.dataset.conditionSelectedVariantId;
     console.log(targetSku);
-    const config = { attributes: true, attributeFilter: ['data-condition-selected-variant-id'] };
+    //const config = { attributes: true, attributeFilter: ['data-condition-selected-variant-id'] };
     const regex = /^\d\d\d\d\d\d$/;
     const bundleRegex = /^[a-zA-z]\d\d\d\d\d\d[a-zA-z]$/;
-    function callback(mutationList) {
-        mutationList.forEach( (mutation) => {
-            if (targetNode.dataset.conditionSelectedVariantId.match(regex)){
+    //function callback(mutationList) {
+    //    mutationList.forEach( (mutation) => {
+            if (targetSKU.match(regex)){
                 try { 
                     document.getElementById("sku-var").outerHTML = "";
                 } catch {};
-                document.querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${targetNode.dataset.conditionSelectedVariantId}<br/></h2></div>`);
+                document.querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${targetSku}<br/></h2></div>`);
                 return;
             }else if (targetNode.dataset.conditionSelectedVariantId.match(bundleRegex)){
                 try { 
                     document.getElementById("sku-var").outerHTML = "";
                 } catch {};
-                document.querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${targetNode.dataset.conditionSelectedVariantId}<br/></h2></div>`);
+                document.querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${targetSku}<br/></h2></div>`);
                 return;
             }
-        });
-    }
-    const observer = new MutationObserver(callback);
-    observer.observe(targetNode, config);
+    //    });
+    //}
+    //const observer = new MutationObserver(callback);
+    //observer.observe(targetNode, config);
 }
 addIfExists();
 
