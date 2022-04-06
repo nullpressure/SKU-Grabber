@@ -1,12 +1,10 @@
-window.onload = main;
-function main(){
 function addIfExists() {
     const targetNode = document.querySelector("div[Selected='Selected']");
-    const targetSku = targetNode.dataset.conditionSelectedVariantId;
-    if(!targetNode||!targetSku) {
+    if(!targetNode) {
         setTimeout(addIfExists,100);
         return;
     }
+    const targetSku = targetNode.dataset.conditionSelectedVariantId;
     const config = { attributes: true, attributeFilter: ['data-condition-selected-variant-id'] };
     const regex = /^\d\d\d\d\d\d$/;
     const bundleRegex = /^[a-zA-z]\d\d\d\d\d\d[a-zA-z]$/;
@@ -31,16 +29,9 @@ function addIfExists() {
     observer.observe(targetNode, config);
 }
 addIfExists();
-function addIfExists2() {
-    if(!(document.querySelector('.productDetailsReplaceContainer'))) {
-        setTimeout(addIfExists2,100);
-        return;
-    }
-    const replaceContainer = document.querySelector('.productDetailsReplaceContainer');
-    const replaceObserver = new MutationObserver((records) => {
-        if (records.some(r => r.type == 'childList' && r.addedNodes && Array.from(r.addedNodes).some(e => e.id == 'product-detail-redesign'))) addIfExists();
-    });
-    replaceObserver.observe(replaceContainer, {childList: true});
-}
-addIfExists2();
-}
+
+const replaceContainer = document.querySelector('.productDetailsReplaceContainer');
+const replaceObserver = new MutationObserver((records) => {
+    if (records.some(r => r.type == 'childList' && r.addedNodes && Array.from(r.addedNodes).some(e => e.id == 'product-detail-redesign'))) addIfExists();
+});
+replaceObserver.observe(replaceContainer, {childList: true});
