@@ -1,8 +1,9 @@
+window.onload() = function(){
 function addIfExists() {
-    const targetNode = document.querySelector('.btn-same-day-delivery');
-    if(!targetNode) {
-        window.setTimeout(addIfExists,100);
-        return;
+    const targetNode = document.getElementById('product-detail-redesign');
+    if(document.getElementById('product-detail-redesign')) {
+        setTimeout(addIfExists,100);
+   
     }
     const config = { attributes: true, attributeFilter: ['data-pid'] };
     const regex = /^\d\d\d\d\d\d$/;
@@ -28,10 +29,15 @@ function addIfExists() {
     observer.observe(targetNode, config);
 }
 addIfExists();
-const replaceContainer = document.querySelector('.productDetailsReplaceContainer');
-const replaceObserver = new MutationObserver((records) => {
-    if (records.some(r => r.type == 'childList' && r.addedNodes && Array.from(r.addedNodes).some(e => e.id == 'product-detail-redesign'))) addIfExists();
-});
-replaceObserver.observe(replaceContainer, {childList: true});
-
-
+function addIfExists2() {
+    if(document.querySelector('.productDetailsReplaceContainer')) {
+        window.setTimeout(addIfExists2,100);
+    }
+    const replaceContainer = document.querySelector('.productDetailsReplaceContainer');
+    const replaceObserver = new MutationObserver((records) => {
+        if (records.some(r => r.type == 'childList' && r.addedNodes && Array.from(r.addedNodes).some(e => e.id == 'product-detail-redesign'))) addIfExists();
+    });
+    replaceObserver.observe(replaceContainer, {childList: true});
+}
+addIfExists2();
+}
