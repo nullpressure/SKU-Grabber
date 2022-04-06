@@ -2,7 +2,7 @@ window.onload = main;
 function main(){
 function addIfExists() {
     const targetNode = document.getElementById('product-detail-redesign');
-    if(document.getElementById('product-detail-redesign')) {
+    if(!(document.getElementById('product-detail-redesign'))) {
         setTimeout(addIfExists,100);
    
     }
@@ -31,7 +31,7 @@ function addIfExists() {
 }
 addIfExists();
 function addIfExists2() {
-    if(document.querySelector('.productDetailsReplaceContainer')) {
+    if(!(document.querySelector('.productDetailsReplaceContainer'))) {
         window.setTimeout(addIfExists2,100);
     }
     const replaceContainer = document.querySelector('.productDetailsReplaceContainer');
