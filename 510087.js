@@ -1,7 +1,7 @@
 window.onload = main;
 function main(){
 function addIfExists() {
-    const targetNode = document.queryselector('.product-detail-redesign');
+    const targetNode = document.querySelector('.product-detail-redesign');
     if(!(document.getElementById('product-detail-redesign'))) {
         setTimeout(addIfExists,100);
    
