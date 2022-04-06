@@ -1,27 +1,28 @@
 window.onload = main;
 function main(){
 function addIfExists() {
-    const targetNode = document.querySelector('.product-detail-redesign');
-    if(!(document.getElementById('product-detail-redesign'))) {
+    const targetNode = document.querySelector("div[Selected='Selected']");
+    const targetSku = targetNode.dataset.conditionSelectedVariantId;
+    if(!targetNode||!targetSku) {
         setTimeout(addIfExists,100);
-   
+        return;
     }
-    const config = { attributes: true, attributeFilter: ['data-pid'] };
+    const config = { attributes: true, attributeFilter: ['data-condition-selected-variant-id'] };
     const regex = /^\d\d\d\d\d\d$/;
     const bundleRegex = /^[a-zA-z]\d\d\d\d\d\d[a-zA-z]$/;
     function callback(mutationList) {
         mutationList.forEach( (mutation) => {
-            if (targetNode.getAttribute('data-pid').match(regex)){
+            if (targetNode.dataset.conditionSelectedVariantId.match(regex)){
                 try { 
                     document.getElementById("sku-var").outerHTML = "";
                 } catch {};
-                document.querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${targetNode.getAttribute('data-pid')}<br/></h2></div>`);
+                document.querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${targetNode.dataset.conditionSelectedVariantId}<br/></h2></div>`);
                 return;
-            }else if (targetNode.getAttribute('data-pid').match(bundleRegex)){
+            }else if (targetNode.dataset.conditionSelectedVariantId.match(bundleRegex)){
                 try { 
                     document.getElementById("sku-var").outerHTML = "";
                 } catch {};
-                document.querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${targetNode.getAttribute('data-pid')}<br/></h2></div>`);
+                document.querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${targetNode.dataset.conditionSelectedVariantId}<br/></h2></div>`);
                 return;
             }
         });
@@ -32,7 +33,8 @@ function addIfExists() {
 addIfExists();
 function addIfExists2() {
     if(!(document.querySelector('.productDetailsReplaceContainer'))) {
-        window.setTimeout(addIfExists2,100);
+        setTimeout(addIfExists2,100);
+        return;
     }
     const replaceContainer = document.querySelector('.productDetailsReplaceContainer');
     const replaceObserver = new MutationObserver((records) => {
