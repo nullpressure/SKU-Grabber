@@ -14,28 +14,39 @@ function addIfExists() {
             return;
         }
     } catch{
-        try{
-            const applePaySKU = document.querySelector("isapplepay").getAttribute('sku');
-            if (applePaySKU.match(regex)){
+        try {
+            const targetSKU = document.querySelector("div[Selected='Selected']").getAttribute('data-condition-selected-variant-id');
+            if (targetSKU.match(regex)){
                 try { 
                     document.getElementById("sku-var").outerHTML = "";
                 } catch {};
-                document.getElementById('primary-details').querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${applePaySKU}<br/></h2></div>`);
+                document.getElementById('primary-details').querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${targetSKU}<br/></h2></div>`);
                 return;
             }
-        } catch {
-            try {
-                const targetAttr = document.getElementById("product-detail-redesign").dataset.pid;
-                if (targetAttr.match(regex)){
+        } catch{
+            try{
+                const applePaySKU = document.querySelector("isapplepay").getAttribute('sku');
+                if (applePaySKU.match(regex)){
                     try { 
                         document.getElementById("sku-var").outerHTML = "";
                     } catch {};
-                    document.getElementById('primary-details').querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${targetAttr}<br/></h2></div>`);
+                    document.getElementById('primary-details').querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${applePaySKU}<br/></h2></div>`);
                     return;
-                }       
-             } catch{
-                setTimeout(addIfExists,10);
-                return;
+                }
+            } catch {
+                try {
+                    const targetAttr = document.getElementById("product-detail-redesign").dataset.pid;
+                    if (targetAttr.match(regex)){
+                        try { 
+                            document.getElementById("sku-var").outerHTML = "";
+                        } catch {};
+                        document.getElementById('primary-details').querySelector(".product-name").insertAdjacentHTML("beforebegin", `<div id="sku-var"><h2 class="product-name h2" style="color:red">SKU: </h2><h2 class="product-name h2">${targetAttr}<br/></h2></div>`);
+                        return;
+                    }       
+                } catch{
+                    setTimeout(addIfExists,10);
+                    return;
+                    }
                 }
             }
         }
